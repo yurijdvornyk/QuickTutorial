@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_color">#333333</color>
+
+
+    <color name="screen_background" />
+    <color name="control_foreground">#345678</color>
+</resources>

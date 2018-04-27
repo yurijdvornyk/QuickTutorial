@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseQuickTutorialTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="screenBackground">@color/screen_background</item>
+        <item name="screenStyle">@style/QuickTutorialScreenStyle</item>
+        <item name="controlForeground">@color/control_foreground</item>
+        <item name="screenTitleStyle">@style/ScreenTitleStyle</item>
+        <item name="screenTextStyle">@style/ScreenTextStyle</item>
+        <item name="controlDividerDrawable">@drawable/ic_control_divider</item>
+        <item name="previousButtonDrawable">@drawable/ic_button_back</item>
+        <item name="nextButtonDrawable">@drawable/ic_button_next</item>
+        <item name="screenFadeInFromLeftAnimation">@anim/tutorial_in_left_to_right</item>
+        <item name="screenFadeInFromRightAnimation">@anim/tutorial_in_right_to_left</item>
+        <item name="screenFadeOutToLeftAnimation">@anim/tutorial_out_right_to_left</item>
+        <item name="screenFadeOutToRightAnimation">@anim/tutorial_out_left_to_right</item>
+    </style>
+
+    <style name="QuickTutorialScreenStyle" parent="Theme.AppCompat.NoActionBar" />
+
+    <style name="ScreenTitleStyle" parent="TextAppearance.AppCompat.Title" />
+
+    <style name="ScreenTextStyle" parent="Base.TextAppearance.AppCompat" />
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="screenBackground" format="reference" />
+    <attr name="screenStyle" format="reference" />
+    <attr name="controlForeground" format="reference" />
+    <attr name="screenTitleStyle" format="reference" />
+    <attr name="screenTextStyle" format="reference" />
+    <attr name="controlDividerDrawable" format="reference" />
+    <attr name="previousButtonDrawable" format="reference" />
+    <attr name="nextButtonDrawable" format="reference" />
+    <attr name="screenFadeInFromLeftAnimation" format="reference" />
+    <attr name="screenFadeInFromRightAnimation" format="reference" />
+    <attr name="screenFadeOutToLeftAnimation" format="reference" />
+    <attr name="screenFadeOutToRightAnimation" format="reference" />
+</resources>

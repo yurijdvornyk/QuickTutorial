@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">QuickTutorialApp</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur finibus tempor turpis. Suspendisse tristique, dui ac gravida mattis, orci erat tempus turpis, id dignissim purus velit ut massa. Mauris scelerisque, velit eget rhoncus ultrices, mauris ex hendrerit tellus, id volutpat est nibh eu neque. Quisque rutrum, erat eget iaculis bibendum.</string>
+</resources>
