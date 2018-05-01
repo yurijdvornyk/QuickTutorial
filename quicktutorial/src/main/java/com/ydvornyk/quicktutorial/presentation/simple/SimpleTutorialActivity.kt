@@ -101,6 +101,23 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
         goToPage(0)
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState!!.putParcelable(ARGUMENT_CONFIG, config)
+        outState.putParcelable(ARGUMENT_CONTENT, content)
+        outState.putInt(ARGUMENT_CURRENT_PAGE, currentPage)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            config = savedInstanceState.getParcelable(ARGUMENT_CONFIG)
+            content = savedInstanceState.getParcelable(ARGUMENT_CONTENT)
+            currentPage = savedInstanceState.getInt(ARGUMENT_CURRENT_PAGE)
+            goToPage(currentPage)
+        }
+    }
+
     override fun initializeControl(): SimpleTutorialControl {
         control = SimpleTutorialControl(this)
         return control
@@ -127,8 +144,9 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
 
     companion object {
 
-        val ARGUMENT_CONTENT = "arg_content"
-        val ARGUMENT_CONFIG = "arg_config"
+        const val ARGUMENT_CONTENT = "arg_content"
+        const val ARGUMENT_CONFIG = "arg_config"
+        const val ARGUMENT_CURRENT_PAGE = "arg_current_page"
 
         fun createIntent(context: Context, content: TutorialContent, config: TutorialConfig): Intent {
             val intent = Intent(context, SimpleTutorialActivity::class.java)

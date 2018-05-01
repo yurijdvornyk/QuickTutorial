@@ -20,7 +20,7 @@ abstract class BaseTutorialActivity<C : BaseTutorialControl, F : BaseTutorialFra
     protected lateinit var fragments: MutableList<F>
 
     var currentPage: Int = 0
-        private set
+        protected set
 
     protected lateinit var control: C
 
