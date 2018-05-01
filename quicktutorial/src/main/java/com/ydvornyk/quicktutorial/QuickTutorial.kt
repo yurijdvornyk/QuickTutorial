@@ -63,8 +63,6 @@ class QuickTutorial private constructor() {
             return this
         }
 
-        // TODO: Setters for config
-
         fun allowBackPress(allowBackPress: Boolean): Builder {
             instance.config.isAllowBackPress = allowBackPress
             return this
@@ -122,6 +120,12 @@ class QuickTutorial private constructor() {
 
         fun lockPortraitOrientation(lock: Boolean): Builder {
             instance.config.lockPortraitOrientation = lock
+            return this
+        }
+
+        fun useNumericProgress(divider: String? = null): Builder {
+            instance.config.useNumericProgress = true
+            instance.config.numericDivider = divider
             return this
         }
 

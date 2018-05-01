@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QuickTutorial</string>
+    <string name="progress_divider">/</string>
 </resources>

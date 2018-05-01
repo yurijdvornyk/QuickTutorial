@@ -18,6 +18,7 @@ class QuickTutorialApplication : Application() {
                 .withContent(createContent())
                 .allowBackPress(false)
                 .allowSwipeNavigation(true)
+                .useNumericProgress("@")
                 .build()
                 .start(this)
     }

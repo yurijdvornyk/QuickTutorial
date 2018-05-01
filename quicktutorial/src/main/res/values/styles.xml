@@ -14,6 +14,7 @@
         <item name="screenFadeInFromRightAnimation">@anim/tutorial_in_right_to_left</item>
         <item name="screenFadeOutToLeftAnimation">@anim/tutorial_out_right_to_left</item>
         <item name="screenFadeOutToRightAnimation">@anim/tutorial_out_left_to_right</item>
+        <item name="progressTextStyle">@style/TextAppearance.AppCompat.Medium</item>
     </style>
 
     <style name="QuickTutorialScreenStyle" parent="Theme.AppCompat.NoActionBar" />

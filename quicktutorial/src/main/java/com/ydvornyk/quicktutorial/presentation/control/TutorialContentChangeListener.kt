@@ -18,5 +18,5 @@ internal interface TutorialContentChangeListener {
     @get:IdRes
     val previousButtonId: Int
 
-    fun onContentChanged(currentPage: Int, totalPages: Int)
+    fun onContentChanged(currentPage: Int)
 }

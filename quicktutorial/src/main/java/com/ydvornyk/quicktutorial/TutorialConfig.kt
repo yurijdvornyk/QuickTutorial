@@ -22,12 +22,15 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
                      var enableScreenSwiping: Boolean = false,
                      var lockPortraitOrientation: Boolean = false,
                      var enableAnimation: Boolean = false,
-                     var disableGoBack: Boolean = false)
+                     var disableGoBack: Boolean = false,
+                     var useNumericProgress: Boolean = false,
+                     var numericDivider: String? = null)
     : Parcelable {
 
     private constructor() : this(false, -1, null, null,
-            null, null, null, null, null,
-            null, false, false, false)
+            null, null, null, null,
+            null, null, false, false,
+            false, false, false, null)
 
 
     fun shouldHideDismissButton(): Boolean {
@@ -36,6 +39,14 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
 
     fun shouldHideCompleteButton(): Boolean {
         return completeButtonText == null && completeButtonImage == null
+    }
+
+    @StyleRes
+    fun getThemeConfig(): Int {
+        return when {
+            theme > 0 -> theme
+            else -> R.style.BaseQuickTutorialTheme
+        }
     }
 
     companion object {
@@ -50,6 +61,7 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
                 config.enableScreenSwiping = false
                 config.enableAnimation = true
                 config.disableGoBack = false
+                config.useNumericProgress = false
                 return config
             }
     }

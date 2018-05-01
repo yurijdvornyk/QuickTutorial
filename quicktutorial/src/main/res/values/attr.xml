@@ -12,4 +12,5 @@
     <attr name="screenFadeInFromRightAnimation" format="reference" />
     <attr name="screenFadeOutToLeftAnimation" format="reference" />
     <attr name="screenFadeOutToRightAnimation" format="reference" />
+    <attr name="progressTextStyle" format="reference" />
 </resources>

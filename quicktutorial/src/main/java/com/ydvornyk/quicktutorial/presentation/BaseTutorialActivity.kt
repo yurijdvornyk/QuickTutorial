@@ -99,10 +99,10 @@ abstract class BaseTutorialActivity<C : BaseTutorialControl, F : BaseTutorialFra
         onFragmentTransactionAfterReplace(transaction)
         transaction.commit()
         currentPage = position
-        control.onContentChanged(currentPage, pagesCount)
+        control.onContentChanged(currentPage)
     }
 
-    protected open fun onFragmentTransactionBeforeReplace(transaction: FragmentTransaction, nexPagePosition: Int) {}
+    protected open fun onFragmentTransactionBeforeReplace(transaction: FragmentTransaction, nextPagePosition: Int) {}
 
     protected fun onFragmentTransactionAfterReplace(transaction: FragmentTransaction) {}
 

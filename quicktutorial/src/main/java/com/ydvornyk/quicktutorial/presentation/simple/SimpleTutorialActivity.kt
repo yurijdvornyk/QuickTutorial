@@ -75,9 +75,9 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
         }
         if (intent.hasExtra(ARGUMENT_CONFIG)) {
             config = intent.getParcelableExtra(ARGUMENT_CONFIG)
-            if (config != null) {
-                control.setUpControl(config!!)
-            }
+        }
+        if (config != null && content != null) {
+            control.setUpControl(config!!, content!!)
         }
         goToPage(0)
     }
