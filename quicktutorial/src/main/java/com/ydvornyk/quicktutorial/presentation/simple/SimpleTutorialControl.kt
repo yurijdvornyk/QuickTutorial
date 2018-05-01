@@ -1,7 +1,11 @@
 package com.ydvornyk.quicktutorial.presentation.simple
 
 import android.content.Context
+import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.support.annotation.NonNull
+import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
@@ -49,6 +53,41 @@ open class SimpleTutorialControl : BaseTutorialControl {
         super.onAttachedToWindow()
         if (progressLayout == null) {
             initializeView()
+        }
+        setUpRippleEffect()
+    }
+
+    protected open fun initializeView() {
+        previousLayout = findViewById(R.id.button_previous)
+        previousImageButton = findViewById(R.id.image_previous)
+        previousTextButton = findViewById(R.id.text_previous)
+        nextLayout = findViewById(R.id.button_next)
+        nextImageButton = findViewById(R.id.image_next)
+        nextTextButton = findViewById(R.id.text_next)
+        progressLayout = findViewById(R.id.layout_progress)
+    }
+
+    protected fun setUpButtonContent() {
+        if (config.nextButtonImage != null) {
+            nextImageButton.setImageDrawable(ContextCompat.getDrawable(context, config.nextButtonImage!!))
+            nextImageButton.visibility = View.VISIBLE
+        } else if (config.nextButtonText != null) {
+            nextTextButton.text = config.nextButtonText
+            nextTextButton.visibility = View.VISIBLE
+        }
+        if (config.previousButtonImage != null) {
+            previousImageButton.setImageDrawable(ContextCompat.getDrawable(context, config.previousButtonImage!!))
+            previousImageButton.visibility = View.VISIBLE
+        } else if (config.previousButtonText != null) {
+            previousTextButton.text = config.previousButtonText
+            previousTextButton.visibility = View.VISIBLE
+        }
+    }
+
+    protected fun setUpRippleEffect() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            previousLayout.background = getRippleDrawable()
+            nextLayout.background = getRippleDrawable()
         }
     }
 
@@ -108,6 +147,15 @@ open class SimpleTutorialControl : BaseTutorialControl {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun getRippleDrawable(): Drawable {
+        val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
+        val typedArray: TypedArray = context.obtainStyledAttributes(attrs)
+        val drawable = typedArray.getDrawable(0)
+        typedArray.recycle()
+        return drawable
+    }
+
     private fun setUpLastPageButtons() {
         when {
             config.shouldHideCompleteButton() -> nextLayout.visibility = View.INVISIBLE
@@ -137,33 +185,6 @@ open class SimpleTutorialControl : BaseTutorialControl {
                 previousImageButton.visibility = View.VISIBLE
                 previousTextButton.visibility = View.INVISIBLE
             }
-        }
-    }
-
-    protected open fun initializeView() {
-        previousLayout = findViewById(R.id.button_previous)
-        previousImageButton = findViewById(R.id.image_previous)
-        previousTextButton = findViewById(R.id.text_previous)
-        nextLayout = findViewById(R.id.button_next)
-        nextImageButton = findViewById(R.id.image_next)
-        nextTextButton = findViewById(R.id.text_next)
-        progressLayout = findViewById(R.id.layout_progress)
-    }
-
-    protected fun setUpButtonContent() {
-        if (config.nextButtonImage != null) {
-            nextImageButton.setImageDrawable(ContextCompat.getDrawable(context, config.nextButtonImage!!))
-            nextImageButton.visibility = View.VISIBLE
-        } else if (config.nextButtonText != null) {
-            nextTextButton.text = config.nextButtonText
-            nextTextButton.visibility = View.VISIBLE
-        }
-        if (config.previousButtonImage != null) {
-            previousImageButton.setImageDrawable(ContextCompat.getDrawable(context, config.previousButtonImage!!))
-            previousImageButton.visibility = View.VISIBLE
-        } else if (config.previousButtonText != null) {
-            previousTextButton.text = config.previousButtonText
-            previousTextButton.visibility = View.VISIBLE
         }
     }
 }
