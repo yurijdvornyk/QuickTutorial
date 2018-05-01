@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.support.annotation.DrawableRes
 import android.support.annotation.StyleRes
-
 import com.ydvornyk.quicktutorial.model.TutorialContent
 import com.ydvornyk.quicktutorial.presentation.BaseTutorialActivity
 import com.ydvornyk.quicktutorial.presentation.simple.SimpleTutorialActivity
@@ -14,17 +13,6 @@ import com.ydvornyk.quicktutorial.presentation.simple.SimpleTutorialActivity
  */
 
 class QuickTutorial private constructor() {
-
-    /*
-    TODO:
-    - Back - previous page or exit?
-    + Show/hide separator
-    + Previous/next - text or image?
-    - Enable/disable screen swipes
-    - Use default control button, or custom one for complete action
-    - Handle configuration change
-    - Portrait lock
-     */
 
     private var activityClass: Class<*>? = null
 
@@ -47,11 +35,7 @@ class QuickTutorial private constructor() {
 
     class Builder private constructor() {
 
-        private val instance: QuickTutorial
-
-        init {
-            instance = QuickTutorial()
-        }
+        private val instance: QuickTutorial = QuickTutorial()
 
         fun <A : BaseTutorialActivity<*, *>> withCustomActivity(activityClass: Class<A>): Builder {
             instance.activityClass = activityClass
@@ -118,8 +102,8 @@ class QuickTutorial private constructor() {
             return this
         }
 
-        fun lockPortraitOrientation(lock: Boolean): Builder {
-            instance.config.lockPortraitOrientation = lock
+        fun lockOrientation(orientation: TutorialConfig.Orientation): Builder {
+            instance.config.lockOrientation = orientation
             return this
         }
 

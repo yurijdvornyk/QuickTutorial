@@ -1,5 +1,6 @@
 package com.ydvornyk.quicktutorial
 
+import android.content.pm.ActivityInfo
 import android.os.Parcelable
 import android.support.annotation.DrawableRes
 import android.support.annotation.StyleRes
@@ -10,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 class TutorialConfig(var isAllowBackPress: Boolean = false,
-                     @StyleRes var theme: Int = 0,
+                     @StyleRes var theme: Int = -1,
                      @DrawableRes var previousButtonImage: Int? = null,
                      @DrawableRes var nextButtonImage: Int? = null,
                      var previousButtonText: String? = null,
@@ -20,18 +21,16 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
                      var completeButtonText: String? = null,
                      var dismissButtonText: String? = null,
                      var enableScreenSwiping: Boolean = false,
-                     var lockPortraitOrientation: Boolean = false,
                      var enableAnimation: Boolean = false,
                      var disableGoBack: Boolean = false,
                      var useNumericProgress: Boolean = false,
-                     var numericDivider: String? = null)
-    : Parcelable {
+                     var numericDivider: String? = null,
+                     var lockOrientation: Orientation? = null) : Parcelable {
 
     private constructor() : this(false, -1, null, null,
             null, null, null, null,
             null, null, false, false,
-            false, false, false, null)
-
+            false, false, null, null)
 
     fun shouldHideDismissButton(): Boolean {
         return dismissButtonText == null && dismissButtonImage == null
@@ -41,12 +40,9 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
         return completeButtonText == null && completeButtonImage == null
     }
 
-    @StyleRes
-    fun getThemeConfig(): Int {
-        return when {
-            theme > 0 -> theme
-            else -> R.style.BaseQuickTutorialTheme
-        }
+    enum class Orientation(val orientation: Int) {
+        PORTRAIT(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT),
+        LANDSCAPE(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     }
 
     companion object {

@@ -67,18 +67,37 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (intent.hasExtra(ARGUMENT_CONTENT)) {
             content = intent.getParcelableExtra(ARGUMENT_CONTENT)
             for (page in content!!.pages) {
                 fragments.add(SimpleTutorialFragment.newInstance(page))
             }
         }
+
         if (intent.hasExtra(ARGUMENT_CONFIG)) {
             config = intent.getParcelableExtra(ARGUMENT_CONFIG)
         }
-        if (config != null && content != null) {
-            control.setUpControl(config!!, content!!)
+
+        if (config != null) {
+            // Set content
+            if (content != null) {
+                control.setUpControl(config!!, content!!)
+            }
+
+            // Set orientation lock
+            if (config!!.lockOrientation != null) {
+                requestedOrientation = config!!.lockOrientation!!.orientation
+            }
+
+            // Set theme
+            if (config!!.theme > 0) {
+                setTheme(config!!.theme)
+            } else {
+                setTheme(R.style.BaseQuickTutorialTheme)
+            }
         }
+
         goToPage(0)
     }
 
