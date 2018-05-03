@@ -1,1 +1,1 @@
-include ':app', ':quicktutorial'
+include ':appkotlin', ':quicktutorial', ':appjava', ':appresources'
