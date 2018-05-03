@@ -1,5 +1,6 @@
 package com.ydvornyk.quicktutorial
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.annotation.DrawableRes
@@ -27,13 +28,26 @@ class QuickTutorial private constructor() {
 
     fun start(context: Context) {
         if (activityClass == null) {
-            context.startActivity(SimpleTutorialActivity.createIntent(context, content!!, config))
+            if (context is Activity) {
+                context.startActivityForResult(SimpleTutorialActivity.createIntent(context, content!!, config), REQUEST_CODE)
+            } else {
+                context.startActivity(SimpleTutorialActivity.createIntent(context, content!!, config))
+            }
         } else {
-            context.startActivity(Intent(context, activityClass))
+            if (context is Activity) {
+                context.startActivityForResult(Intent(context, activityClass), REQUEST_CODE)
+            } else {
+                context.startActivity(Intent(context, activityClass))
+            }
         }
     }
 
-    class Builder private constructor() {
+    companion object {
+
+        val REQUEST_CODE: Int = QuickTutorial::class.hashCode() % 65535
+    }
+
+    class Builder {
 
         private val instance: QuickTutorial = QuickTutorial()
 
@@ -115,13 +129,6 @@ class QuickTutorial private constructor() {
 
         fun build(): QuickTutorial {
             return instance
-        }
-
-        companion object {
-
-            fun create(): Builder {
-                return Builder()
-            }
         }
     }
 }

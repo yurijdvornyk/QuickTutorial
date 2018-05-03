@@ -1,26 +1,30 @@
-package com.ydvornyk.quicktutorialapp
+package com.ydvornyk.quicktutorialapp.kotlin
 
 import android.app.Application
+import android.content.Context
 
 import com.ydvornyk.quicktutorial.QuickTutorial
 import com.ydvornyk.quicktutorial.model.TutorialContent
 import com.ydvornyk.quicktutorial.model.TutorialPage
+import com.ydvornyk.quicktutorialapp.R
 
 /**
  * Created by yuriidvornyk on 4/16/18.
  */
 
-class QuickTutorialApplication : Application() {
+class QuickTutorialKotlinApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        QuickTutorial.Builder.create()
+        buildAndStartTutorial(this)
+    }
+
+    fun buildAndStartTutorial(context: Context) {
+        QuickTutorial.Builder()
                 .withContent(createContent())
-                .allowBackPress(false)
                 .allowSwipeNavigation(true)
-                .useNumericProgress("@")
                 .build()
-                .start(this)
+                .start(context)
     }
 
     private fun createContent(): TutorialContent {

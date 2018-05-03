@@ -1,5 +1,6 @@
 package com.ydvornyk.quicktutorial.presentation
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
@@ -83,11 +84,13 @@ abstract class BaseTutorialActivity<C : BaseTutorialControl, F : BaseTutorialFra
     protected abstract fun initializeControl(): C
 
     protected fun onCompleteClicked(view: View) {
+        setResult(Activity.RESULT_OK)
         finish()
     }
 
     protected fun onDismissClicked(view: View) {
-        onBackPressed()
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 
     protected fun goToPage(position: Int) {
