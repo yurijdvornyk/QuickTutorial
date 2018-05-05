@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
 import com.ydvornyk.quicktutorial.R
 import com.ydvornyk.quicktutorial.model.TutorialPage
 import com.ydvornyk.quicktutorial.presentation.BaseTutorialFragment

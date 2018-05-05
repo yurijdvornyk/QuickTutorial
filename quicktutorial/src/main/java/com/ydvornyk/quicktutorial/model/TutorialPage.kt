@@ -10,10 +10,10 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 class TutorialPage(
-        var title: String? = null,
+        var title: CharSequence? = null,
         @DrawableRes var imageRes: Int = -1,
         @LayoutRes var layoutRes: Int = -1,
-        var text: String? = null)
+        var text: CharSequence? = null)
     : Parcelable {
 
     private constructor() : this("", -1, -1, null)
@@ -22,12 +22,12 @@ class TutorialPage(
 
         private val page: TutorialPage = TutorialPage()
 
-        fun title(title: String): Builder {
+        fun title(title: CharSequence): Builder {
             page.title = title
             return this
         }
 
-        fun text(text: String): Builder {
+        fun text(text: CharSequence): Builder {
             page.text = text
             return this
         }

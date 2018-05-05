@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ydvornyk.quicktutorial.QuickTutorial;
+import com.ydvornyk.quicktutorial.model.TutorialContent;
+import com.ydvornyk.quicktutorial.model.TutorialPage;
 
 public class MainJavaActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class MainJavaActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((QuickTutorialJavaApplication) getApplication()).buildAndStartTutorial(MainJavaActivity.this);
+                showTutorial();
             }
         });
     }
@@ -42,5 +44,33 @@ public class MainJavaActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void showTutorial() {
+        new QuickTutorial.Builder()
+                .withContent(new TutorialContent()
+                        .addPage(new TutorialPage.Builder()
+                                .title(getString(R.string.tutorial_title_page0))
+                                .text(getString(R.string.tutorial_text_page0))
+                                .build())
+                        .addPage(new TutorialPage.Builder()
+                                .title(getString(R.string.tutorial_title_page1))
+                                .text(getString(R.string.tutorial_text_page1))
+                                .build())
+                        .addPage(new TutorialPage.Builder()
+                                .title(getString(R.string.tutorial_title_page2))
+                                .image(R.drawable.ic_chart)
+                                .build())
+                        .addPage(new TutorialPage.Builder()
+                                .title(getString(R.string.tutorial_title_page3))
+                                .text(getString(R.string.tutorial_text_page3))
+                                .image(R.drawable.ic_norway)
+                                .build())
+                        .addPage(new TutorialPage.Builder()
+                                .layout(R.layout.layout_page4)
+                                .build())
+                )
+                .build()
+                .start(this);
     }
 }

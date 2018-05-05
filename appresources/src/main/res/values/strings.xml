@@ -9,4 +9,15 @@
     <string name="start_tutorial">Start Tutorial</string>
     <string name="complete">Complete</string>
     <string name="dismiss">Dismiss</string>
+    <string name="completed">Completed</string>
+    <string name="dismissed">Dismissed</string>
+    <string name="tutorial_title_page0">Welcome to QuickTutorial</string>
+    <string name="tutorial_text_page0">QuickTutorial helps you to make minimalistic start guides on just one expression!\n\nIt has lots of build-in features, but if you need more, you can simply extend them by using custom activities, fragments and controllers!\n\nLet\'s quickly overview main features of this library! Click next button or simply swipe on the screen to go to the next page.</string>
+    <string name="tutorial_title_page1">Simple text screen</string>
+    <string name="tutorial_text_page1">This is simple text screen.\nIt consists of the title and text.\n\n\nNothing else in case you need really minimalistic page.</string>
+    <string name="tutorial_title_page2">Image screen</string>
+    <string name="tutorial_title_page3">Screen with image and text</string>
+    <string name="tutorial_text_page3">Well, on the previous page I just showed some pie chart.\n\nNow, let\'s combine this text with my picture from Norway.\n\nSimply add all the data that you need.</string>
+    <string name="tutorial_text_page4">That\'s it from now.\nWe are updating this library all the time, so stay tuned!</string>
+    <string name="got_it">Got it!</string>
 </resources>
