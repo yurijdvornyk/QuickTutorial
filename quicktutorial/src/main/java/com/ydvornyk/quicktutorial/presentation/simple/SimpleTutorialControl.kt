@@ -137,8 +137,13 @@ open class SimpleTutorialControl : BaseTutorialControl {
         }
 
         when (currentPage) {
-            0 -> setUpFirstPageButtons()
-            content.pages.size - 1 -> setUpLastPageButtons()
+            0 -> {
+                setUpFirstPageButton()
+                if (content.pages.size == 1) {
+                    setUpLastPageButton()
+                }
+            }
+            content.pages.size - 1 -> setUpLastPageButton()
             else -> {
                 previousLayout.visibility = View.VISIBLE
                 nextLayout.visibility = View.VISIBLE
@@ -156,7 +161,7 @@ open class SimpleTutorialControl : BaseTutorialControl {
         return drawable
     }
 
-    private fun setUpLastPageButtons() {
+    private fun setUpLastPageButton() {
         when {
             config.shouldHideCompleteButton() -> nextLayout.visibility = View.INVISIBLE
             config.completeButtonText != null -> {
@@ -172,7 +177,7 @@ open class SimpleTutorialControl : BaseTutorialControl {
         }
     }
 
-    private fun setUpFirstPageButtons() {
+    private fun setUpFirstPageButton() {
         when {
             config.shouldHideDismissButton() -> previousLayout.visibility = View.INVISIBLE
             config.dismissButtonText != null -> {

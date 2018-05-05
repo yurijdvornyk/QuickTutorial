@@ -36,7 +36,7 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
         val image = view.findViewById<ImageView>(R.id.image_content)
         val layout = view.findViewById<ViewGroup>(R.id.layout_content)
 
-        if (!content!!.title.isEmpty()) {
+        if (content!!.title != null) {
             title.visibility = View.VISIBLE
             title.text = content!!.title
         }
@@ -44,7 +44,7 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
             image.visibility = View.VISIBLE
             image.setImageDrawable(ContextCompat.getDrawable(context!!, content!!.imageRes))
         }
-        if (!content!!.text.isEmpty()) {
+        if (content!!.text != null) {
             text.visibility = View.VISIBLE
             text.text = content!!.text
         }
@@ -58,7 +58,7 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
 
     companion object {
 
-        val ARGUMENT_PAGE = "argument_page"
+        const val ARGUMENT_PAGE = "argument_page"
 
         fun newInstance(page: TutorialPage): SimpleTutorialFragment {
             val fragment = SimpleTutorialFragment()

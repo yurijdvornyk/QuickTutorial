@@ -11,7 +11,8 @@ class TutorialContent(var pages: MutableList<TutorialPage>) : Parcelable {
 
     constructor() : this(mutableListOf())
 
-    fun addPage(page: TutorialPage) {
+    fun addPage(page: TutorialPage) : TutorialContent {
         pages.add(page)
+        return this
     }
 }

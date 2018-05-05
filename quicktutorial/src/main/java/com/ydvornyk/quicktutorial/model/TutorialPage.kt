@@ -10,13 +10,13 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 class TutorialPage(
-        var title: String,
-        @DrawableRes var imageRes: Int,
-        @LayoutRes var layoutRes: Int,
-        var text: String)
+        var title: String? = null,
+        @DrawableRes var imageRes: Int = -1,
+        @LayoutRes var layoutRes: Int = -1,
+        var text: String? = null)
     : Parcelable {
 
-    private constructor() : this("", -1, -1, "")
+    private constructor() : this("", -1, -1, null)
 
     class Builder {
 
