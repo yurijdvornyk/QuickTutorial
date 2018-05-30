@@ -3,7 +3,6 @@
     android:id="@+id/layout_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?screenBackground"
     android:orientation="vertical">
 
     <FrameLayout
@@ -16,7 +15,8 @@
         android:id="@+id/divider_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="?controlDividerDrawable" />
+        android:src="?controlDividerDrawable"
+        android:tint="?screenForeground" />
 
     <FrameLayout
         android:id="@+id/layout_control"

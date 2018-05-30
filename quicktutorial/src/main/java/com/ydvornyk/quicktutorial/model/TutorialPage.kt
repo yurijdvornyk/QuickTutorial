@@ -1,6 +1,7 @@
 package com.ydvornyk.quicktutorial.model
 
 import android.os.Parcelable
+import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import kotlinx.android.parcel.Parcelize
@@ -13,10 +14,12 @@ class TutorialPage(
         var title: CharSequence? = null,
         @DrawableRes var imageRes: Int = -1,
         @LayoutRes var layoutRes: Int = -1,
+        @ColorRes var backgroundColor: Int = -1,
+        @DrawableRes var backgroundDrawable: Int = -1,
         var text: CharSequence? = null)
     : Parcelable {
 
-    private constructor() : this("", -1, -1, null)
+    private constructor() : this("", -1, -1, -1, -1, null)
 
     class Builder {
 
@@ -39,6 +42,16 @@ class TutorialPage(
 
         fun layout(@LayoutRes layoutRes: Int): Builder {
             page.layoutRes = layoutRes
+            return this
+        }
+
+        fun backgroundColor(@ColorRes color: Int): Builder {
+            page.backgroundColor = color
+            return this
+        }
+
+        fun backgroundDrawable(@DrawableRes drawable: Int): Builder {
+            page.backgroundDrawable = drawable
             return this
         }
 

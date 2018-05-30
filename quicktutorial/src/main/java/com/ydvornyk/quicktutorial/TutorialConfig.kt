@@ -2,6 +2,7 @@ package com.ydvornyk.quicktutorial
 
 import android.content.pm.ActivityInfo
 import android.os.Parcelable
+import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.StyleRes
 import kotlinx.android.parcel.Parcelize
@@ -25,12 +26,15 @@ class TutorialConfig(var isAllowBackPress: Boolean = false,
                      var disableGoBack: Boolean = false,
                      var useNumericProgress: Boolean = false,
                      var numericDivider: String? = null,
-                     var lockOrientation: Orientation? = null) : Parcelable {
+                     var lockOrientation: Orientation? = null,
+                     @ColorRes var backgroundColorRes: Int? = null,
+                     @DrawableRes var backgroundDrawableRes: Int? = null) : Parcelable {
 
     private constructor() : this(false, -1, null, null,
             null, null, null, null,
             null, null, false, false,
-            false, false, null, null)
+            false, false, null, null,
+            null, null)
 
     fun shouldHideDismissButton(): Boolean {
         return dismissButtonText == null && dismissButtonImage == null

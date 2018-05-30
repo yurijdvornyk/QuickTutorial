@@ -4,5 +4,5 @@
 
     <corners android:radius="@dimen/margin_quarter" />
 
-    <solid android:color="@color/default_color" />
+    <solid android:color="?controlForeground" />
 </shape>

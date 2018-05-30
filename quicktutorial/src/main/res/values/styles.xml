@@ -2,9 +2,9 @@
 <resources>
 
     <style name="BaseQuickTutorialTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="screenBackground">@color/screen_background</item>
+        <item name="screenForeground">@color/screen_foreground_default</item>
         <item name="screenStyle">@style/QuickTutorialScreenStyle</item>
-        <item name="controlForeground">@color/control_foreground</item>
+        <item name="controlForeground">@color/control_foreground_default</item>
         <item name="screenTitleStyle">@style/ScreenTitleStyle</item>
         <item name="screenTextStyle">@style/ScreenTextStyle</item>
         <item name="controlDividerDrawable">@drawable/ic_control_divider</item>
@@ -22,4 +22,16 @@
     <style name="ScreenTitleStyle" parent="TextAppearance.AppCompat.Title" />
 
     <style name="ScreenTextStyle" parent="Base.TextAppearance.AppCompat" />
+
+    <style name="LightGreyTutorialTheme" parent="BaseQuickTutorialTheme">
+        <item name="controlForeground">@color/control_foreground_default</item>
+        <item name="screenBackgroundColor">@color/screen_background_default</item>
+        <item name="screenForeground">@color/screen_foreground_default</item>
+    </style>
+    
+    <style name="LightRedTutorialTheme" parent="BaseQuickTutorialTheme">
+        <item name="controlForeground">@color/control_foreground_red_light</item>
+        <item name="screenBackgroundColor">@color/screen_background_red_light</item>
+        <item name="screenForeground">@color/screen_foreground_red_light</item>
+    </style>
 </resources>

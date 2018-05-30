@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="screenBackground" format="reference" />
+    <attr name="screenBackgroundDrawable" format="reference" />
+    <attr name="screenBackgroundColor" format="reference" />
+    <attr name="screenForeground" format="reference" />
     <attr name="screenStyle" format="reference" />
     <attr name="controlForeground" format="reference" />
     <attr name="screenTitleStyle" format="reference" />

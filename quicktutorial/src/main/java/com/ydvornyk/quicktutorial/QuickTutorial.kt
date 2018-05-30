@@ -3,6 +3,7 @@ package com.ydvornyk.quicktutorial
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.StyleRes
 import com.ydvornyk.quicktutorial.model.TutorialContent
@@ -124,6 +125,16 @@ class QuickTutorial private constructor() {
         fun useNumericProgress(divider: String? = null): Builder {
             instance.config.useNumericProgress = true
             instance.config.numericDivider = divider
+            return this
+        }
+
+        fun backgroundColorRes(@ColorRes color: Int?): Builder {
+            instance.config.backgroundColorRes = color
+            return this
+        }
+
+        fun backgroundDrawableRes(@DrawableRes drawable: Int?): Builder {
+            instance.config.backgroundDrawableRes = drawable
             return this
         }
 

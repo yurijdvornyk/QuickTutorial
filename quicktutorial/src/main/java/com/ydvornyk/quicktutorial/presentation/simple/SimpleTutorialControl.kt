@@ -1,11 +1,7 @@
 package com.ydvornyk.quicktutorial.presentation.simple
 
 import android.content.Context
-import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
-import android.os.Build
 import android.support.annotation.NonNull
-import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
@@ -16,6 +12,8 @@ import com.ydvornyk.quicktutorial.R
 import com.ydvornyk.quicktutorial.TutorialConfig
 import com.ydvornyk.quicktutorial.model.TutorialContent
 import com.ydvornyk.quicktutorial.presentation.control.BaseTutorialControl
+import com.ydvornyk.quicktutorial.util.ThemeUtil
+import com.ydvornyk.quicktutorial.util.VersionUtil
 
 /**
  * Created by yuriidvornyk on 4/18/18.
@@ -85,9 +83,9 @@ open class SimpleTutorialControl : BaseTutorialControl {
     }
 
     protected fun setUpRippleEffect() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            previousLayout.background = getRippleDrawable()
-            nextLayout.background = getRippleDrawable()
+        if (VersionUtil.isLollipopOrHigher()) {
+            previousLayout.background = ThemeUtil.getStyleableDrawable(context, R.attr.selectableItemBackgroundBorderless)
+            nextLayout.background = ThemeUtil.getStyleableDrawable(context, R.attr.selectableItemBackgroundBorderless)
         }
     }
 
@@ -150,15 +148,6 @@ open class SimpleTutorialControl : BaseTutorialControl {
                 setUpButtonContent()
             }
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun getRippleDrawable(): Drawable {
-        val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
-        val typedArray: TypedArray = context.obtainStyledAttributes(attrs)
-        val drawable = typedArray.getDrawable(0)
-        typedArray.recycle()
-        return drawable
     }
 
     private fun setUpLastPageButton() {

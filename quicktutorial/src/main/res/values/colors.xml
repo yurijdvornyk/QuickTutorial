@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="default_color">#333333</color>
-
-
-    <color name="screen_background" />
-    <color name="control_foreground">#666666</color>
+    <color name="screen_background_default" />
+    <color name="screen_foreground_default" />
+    <color name="control_foreground_default">#666666</color>
+    
+    <color name="screen_background_red_light">#ffcccb</color>
+    <color name="screen_foreground_red_light">#ba6b6c</color>
+    <color name="control_foreground_red_light">#ba6b6c</color>
 </resources>

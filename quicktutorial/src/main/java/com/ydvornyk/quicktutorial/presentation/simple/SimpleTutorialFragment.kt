@@ -34,6 +34,7 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
         val text = view.findViewById<TextView>(R.id.text_content)
         val image = view.findViewById<ImageView>(R.id.image_content)
         val layout = view.findViewById<ViewGroup>(R.id.layout_content)
+        val fragmentLayout = view.findViewById<ViewGroup>(R.id.layout_screen)
 
         if (content!!.title != null) {
             title.visibility = View.VISIBLE
@@ -50,6 +51,12 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
         if (content!!.layoutRes > 0) {
             layout.removeAllViews()
             View.inflate(context, content!!.layoutRes, layout)
+        }
+        if (content!!.backgroundColor > 0) {
+            fragmentLayout.setBackgroundColor(ContextCompat.getColor(this.context!!, content!!.backgroundColor))
+        }
+        if (content!!.backgroundDrawable > 0) {
+            fragmentLayout.setBackgroundResource(content!!.backgroundDrawable)
         }
 
         return view

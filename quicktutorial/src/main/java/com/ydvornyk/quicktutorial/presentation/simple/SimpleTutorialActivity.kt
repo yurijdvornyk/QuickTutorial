@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentTransaction
+import android.support.v4.content.ContextCompat
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup
 import com.ydvornyk.quicktutorial.R
 import com.ydvornyk.quicktutorial.TutorialConfig
 import com.ydvornyk.quicktutorial.model.TutorialContent
@@ -97,7 +99,7 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
                 setTheme(R.style.BaseQuickTutorialTheme)
             }
         }
-
+        setUpBackground()
         goToPage(0)
     }
 
@@ -139,6 +141,18 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
             } else {
                 transaction.setCustomAnimations(fadeOutLeftToRightValue.resourceId, fadeInLeftToRightValue.resourceId)
             }
+        }
+    }
+
+    private fun setUpBackground() {
+        val layout: ViewGroup = findViewById(R.id.layout_view)
+        val themeBackgroundColor = TypedValue()
+        val themeBackgroundDrawable = TypedValue()
+        when {
+            config!!.backgroundDrawableRes != null -> layout.setBackgroundResource(config!!.backgroundDrawableRes!!)
+            config!!.backgroundColorRes != null -> layout.setBackgroundColor(ContextCompat.getColor(this, config!!.backgroundColorRes!!))
+            theme.resolveAttribute(R.attr.screenBackgroundDrawable, themeBackgroundDrawable, true) -> layout.setBackgroundResource(themeBackgroundDrawable.resourceId)
+            theme.resolveAttribute(R.attr.screenBackgroundColor, themeBackgroundColor, true) -> layout.setBackgroundColor(ContextCompat.getColor(this, themeBackgroundColor.resourceId))
         }
     }
 
