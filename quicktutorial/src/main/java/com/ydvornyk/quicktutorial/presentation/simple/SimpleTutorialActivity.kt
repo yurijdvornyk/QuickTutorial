@@ -7,9 +7,11 @@ import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.ydvornyk.quicktutorial.R
 import com.ydvornyk.quicktutorial.TutorialConfig
 import com.ydvornyk.quicktutorial.model.TutorialContent
@@ -25,6 +27,10 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
 
     private var config: TutorialConfig? = null
 
+    private lateinit var contentLayout: ViewGroup
+
+    private lateinit var dividerImage: ImageView
+
     @get:LayoutRes
     override val layoutRes: Int
         get() = R.layout.activiy_quick_tutorial
@@ -33,37 +39,15 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
     override val controlRes: Int
         get() = R.id.layout_control
 
-    override fun onNextClicked(view: View) {
-        if (currentPage == pagesCount - 1 && !config!!.shouldHideCompleteButton()) {
-            onCompleteClicked(view)
-        } else {
-            super.onNextClicked(view)
-        }
-    }
-
-    override fun onPreviousClicked(view: View) {
-        if (currentPage == 0 && !config!!.shouldHideDismissButton()) {
-            onDismissClicked(view)
-        } else {
-            super.onPreviousClicked(view)
-        }
-    }
-
-    override fun onBackPressed() {
-        if (config!!.isAllowBackPress) {
-            super.onBackPressed()
-        }
-    }
-
     public override fun onSwipeLeft() {
         if (config!!.enableScreenSwiping) {
-            super.onNextClicked(findViewById(R.id.layout_content))
+            super.onNextClicked(contentLayout)
         }
     }
 
     public override fun onSwipeRight() {
         if (config!!.enableScreenSwiping) {
-            super.onPreviousClicked(findViewById(R.id.layout_content))
+            super.onPreviousClicked(contentLayout)
         }
     }
 
@@ -80,26 +64,18 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
         if (intent.hasExtra(ARGUMENT_CONFIG)) {
             config = intent.getParcelableExtra(ARGUMENT_CONFIG)
         }
-
+        contentLayout = findViewById(R.id.layout_content)
+        dividerImage = findViewById(R.id.divider_control)
         if (config != null) {
-            // Set content
-            if (content != null) {
-                control.setUpControl(config!!, content!!)
-            }
-
-            // Set orientation lock
-            if (config!!.lockOrientation != null) {
-                requestedOrientation = config!!.lockOrientation!!.orientation
-            }
-
-            // Set theme
-            if (config!!.theme > 0) {
-                setTheme(config!!.theme)
-            } else {
-                setTheme(R.style.BaseQuickTutorialTheme)
-            }
+            setControl()
+            setOrientationLock()
+            setTheme()
         }
         setUpBackground()
+        val dividerColorValue = TypedValue()
+        if (theme.resolveAttribute(R.attr.controlForeground, dividerColorValue, true)) {
+            DrawableCompat.setTint(dividerImage.drawable, ContextCompat.getColor(this, dividerColorValue.resourceId))
+        }
         goToPage(0)
     }
 
@@ -141,6 +117,48 @@ class SimpleTutorialActivity : BaseTutorialActivity<SimpleTutorialControl, Simpl
             } else {
                 transaction.setCustomAnimations(fadeOutLeftToRightValue.resourceId, fadeInLeftToRightValue.resourceId)
             }
+        }
+    }
+
+    override fun onNextClicked(view: View) {
+        if (currentPage == pagesCount - 1 && !config!!.shouldHideCompleteButton()) {
+            onCompleteClicked(view)
+        } else {
+            super.onNextClicked(view)
+        }
+    }
+
+    override fun onPreviousClicked(view: View) {
+        if (currentPage == 0 && !config!!.shouldHideDismissButton()) {
+            onDismissClicked(view)
+        } else {
+            super.onPreviousClicked(view)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (config!!.isAllowBackPress) {
+            super.onBackPressed()
+        }
+    }
+
+    private fun setTheme() {
+        if (config!!.theme > 0) {
+            setTheme(config!!.theme)
+        } else {
+            setTheme(R.style.BaseQuickTutorialTheme)
+        }
+    }
+
+    private fun setOrientationLock() {
+        if (config!!.lockOrientation != null) {
+            requestedOrientation = config!!.lockOrientation!!.orientation
+        }
+    }
+
+    private fun setControl() {
+        if (content != null) {
+            control.setUpControl(config!!, content!!)
         }
     }
 

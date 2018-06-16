@@ -98,7 +98,7 @@ abstract class BaseTutorialActivity<C : BaseTutorialControl, F : BaseTutorialFra
         val transaction = supportFragmentManager
                 .beginTransaction()
         onFragmentTransactionBeforeReplace(transaction, position)
-        transaction.replace(R.id.layout, fragment)
+        transaction.replace(R.id.layout_content, fragment)
         onFragmentTransactionAfterReplace(transaction)
         transaction.commit()
         currentPage = position

@@ -36,30 +36,53 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
         val layout = view.findViewById<ViewGroup>(R.id.layout_content)
         val fragmentLayout = view.findViewById<ViewGroup>(R.id.layout_screen)
 
-        if (content!!.title != null) {
-            title.visibility = View.VISIBLE
-            title.text = content!!.title
+        setTitle(title)
+        setContentImage(image)
+        setContentText(text)
+        setCustomLayout(layout)
+        setBackgroundColor(fragmentLayout)
+        setBackgroundDrawable(fragmentLayout)
+        return view
+    }
+
+    private fun setBackgroundDrawable(fragmentLayout: ViewGroup) {
+        if (content!!.backgroundDrawable > 0) {
+            fragmentLayout.setBackgroundResource(content!!.backgroundDrawable)
         }
-        if (content!!.imageRes > 0) {
-            image.visibility = View.VISIBLE
-            image.setImageDrawable(ContextCompat.getDrawable(context!!, content!!.imageRes))
+    }
+
+    private fun setBackgroundColor(fragmentLayout: ViewGroup) {
+        if (content!!.backgroundColor > 0) {
+            fragmentLayout.setBackgroundColor(ContextCompat.getColor(this.context!!, content!!.backgroundColor))
         }
-        if (content!!.text != null) {
-            text.visibility = View.VISIBLE
-            text.text = content!!.text
-        }
+    }
+
+    private fun setCustomLayout(layout: ViewGroup) {
         if (content!!.layoutRes > 0) {
             layout.removeAllViews()
             View.inflate(context, content!!.layoutRes, layout)
         }
-        if (content!!.backgroundColor > 0) {
-            fragmentLayout.setBackgroundColor(ContextCompat.getColor(this.context!!, content!!.backgroundColor))
-        }
-        if (content!!.backgroundDrawable > 0) {
-            fragmentLayout.setBackgroundResource(content!!.backgroundDrawable)
-        }
+    }
 
-        return view
+    private fun setContentText(text: TextView) {
+        if (content!!.text != null) {
+            text.visibility = View.VISIBLE
+            text.text = content!!.text
+        }
+    }
+
+    private fun setContentImage(image: ImageView) {
+        if (content!!.imageRes > 0) {
+            image.visibility = View.VISIBLE
+            image.setImageDrawable(ContextCompat.getDrawable(context!!, content!!.imageRes))
+        }
+    }
+
+    private fun setTitle(title: TextView) {
+        if (content!!.title != null) {
+            title.visibility = View.VISIBLE
+            title.text = content!!.title
+        }
     }
 
     companion object {

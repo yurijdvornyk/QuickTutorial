@@ -16,10 +16,11 @@ class TutorialPage(
         @LayoutRes var layoutRes: Int = -1,
         @ColorRes var backgroundColor: Int = -1,
         @DrawableRes var backgroundDrawable: Int = -1,
+        @ColorRes var foregroundColor: Int = -1,
         var text: CharSequence? = null)
     : Parcelable {
 
-    private constructor() : this("", -1, -1, -1, -1, null)
+    private constructor() : this("", -1, -1, -1, -1, -1, null)
 
     class Builder {
 
@@ -52,6 +53,11 @@ class TutorialPage(
 
         fun backgroundDrawable(@DrawableRes drawable: Int): Builder {
             page.backgroundDrawable = drawable
+            return this
+        }
+
+        fun foregroundColor(@ColorRes color: Int): Builder {
+            page.foregroundColor = color
             return this
         }
 
