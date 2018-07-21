@@ -1,9 +1,13 @@
 package com.ydvornyk.quicktutorial.model
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Parcelable
+import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
+import android.support.v4.content.ContextCompat
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -14,9 +18,9 @@ class TutorialPage(
         var title: CharSequence? = null,
         @DrawableRes var imageRes: Int = -1,
         @LayoutRes var layoutRes: Int = -1,
-        @ColorRes var backgroundColor: Int = -1,
+        @ColorInt var backgroundColor: Int = -1,
         @DrawableRes var backgroundDrawable: Int = -1,
-        @ColorRes var foregroundColor: Int = -1,
+        @ColorInt var foregroundColor: Int = -1,
         var text: CharSequence? = null)
     : Parcelable {
 
@@ -46,8 +50,14 @@ class TutorialPage(
             return this
         }
 
-        fun backgroundColor(@ColorRes color: Int): Builder {
-            page.backgroundColor = color
+        fun backgroundColor(hex: String): Builder {
+            page.backgroundColor = Color.parseColor(hex)
+            return this
+        }
+
+
+        fun backgroundColor(@ColorRes colorRes: Int, context: Context): Builder {
+            page.backgroundColor = ContextCompat.getColor(context, colorRes)
             return this
         }
 
@@ -56,8 +66,13 @@ class TutorialPage(
             return this
         }
 
-        fun foregroundColor(@ColorRes color: Int): Builder {
-            page.foregroundColor = color
+        fun foregroundColor(@ColorRes colorRes: Int, context: Context): Builder {
+            page.foregroundColor = ContextCompat.getColor(context, colorRes)
+            return this
+        }
+
+        fun foregroundColor(hex: String): Builder {
+            page.foregroundColor = Color.parseColor(hex)
             return this
         }
 

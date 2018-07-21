@@ -95,6 +95,7 @@ open class SimpleTutorialControl : BaseTutorialControl {
     }
 
     private fun setUpRippleEffect() {
+        // TODO: Handle older versions too
         if (VersionUtil.isLollipopOrHigher()) {
             previousLayout.background = ThemeUtil.getStyleableDrawable(context, R.attr.selectableItemBackgroundBorderless)
             nextLayout.background = ThemeUtil.getStyleableDrawable(context, R.attr.selectableItemBackgroundBorderless)
