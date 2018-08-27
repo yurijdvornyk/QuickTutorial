@@ -16,36 +16,12 @@
         android:textColor="?screenForeground"
         android:visibility="gone" />
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/layout_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
-
-        <LinearLayout
-            android:id="@+id/layout_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/text_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_double"
-                android:textColor="?screenForeground"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/image_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_double"
-                android:visibility="gone" />
-
-        </LinearLayout>
-    </FrameLayout>
+        android:gravity="center"
+        android:orientation="vertical" />
+    
 </LinearLayout>

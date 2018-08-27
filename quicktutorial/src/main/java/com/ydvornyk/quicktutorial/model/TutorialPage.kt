@@ -8,6 +8,7 @@ import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
+import com.ydvornyk.quicktutorial.model.content.*
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -16,15 +17,20 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class TutorialPage(
         var title: CharSequence? = null,
-        @DrawableRes var imageRes: Int = -1,
-        @LayoutRes var layoutRes: Int = -1,
         @ColorInt var backgroundColor: Int = -1,
         @DrawableRes var backgroundDrawable: Int = -1,
         @ColorInt var foregroundColor: Int = -1,
-        var text: CharSequence? = null)
-    : Parcelable {
+        var contentOrientation: ContentOrientation = ContentOrientation.VERTICAL,
+        var content: MutableList<ContentItem>
+) : Parcelable {
 
-    private constructor() : this("", -1, -1, -1, -1, -1, null)
+    private constructor() : this("", -1, -1, -1,
+            ContentOrientation.VERTICAL, mutableListOf())
+
+    enum class ContentOrientation {
+        HORIZONTAL,
+        VERTICAL
+    }
 
     class Builder {
 
@@ -32,21 +38,6 @@ class TutorialPage(
 
         fun title(title: CharSequence): Builder {
             page.title = title
-            return this
-        }
-
-        fun text(text: CharSequence): Builder {
-            page.text = text
-            return this
-        }
-
-        fun image(@DrawableRes imageRes: Int): Builder {
-            page.imageRes = imageRes
-            return this
-        }
-
-        fun layout(@LayoutRes layoutRes: Int): Builder {
-            page.layoutRes = layoutRes
             return this
         }
 
@@ -73,6 +64,31 @@ class TutorialPage(
 
         fun foregroundColor(hex: String): Builder {
             page.foregroundColor = Color.parseColor(hex)
+            return this
+        }
+
+        fun contentOrientation(contentOrientation: ContentOrientation): Builder {
+            page.contentOrientation = contentOrientation
+            return this
+        }
+
+        fun addText(text: String): Builder {
+            page.content.add(TextContentItem(text))
+            return this
+        }
+
+        fun addImage(image: ByteArray): Builder {
+            page.content.add(ImageContentItem(image))
+            return this
+        }
+
+        fun addDrawable(@DrawableRes drawable: Int): Builder {
+            page.content.add(DrawableContentItem(drawable))
+            return this
+        }
+
+        fun addLayout(@LayoutRes layout: Int): Builder {
+            page.content.add(LayoutContentItem(layout))
             return this
         }
 
