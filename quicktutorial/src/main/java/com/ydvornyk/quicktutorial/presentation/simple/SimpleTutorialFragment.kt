@@ -70,6 +70,12 @@ class SimpleTutorialFragment : BaseTutorialFragment() {
                 ContentItem.ContentItemType.LAYOUT -> addCustomViewLayout(item.content as Int)
             }
         }
+        for (i in 0 until layout.childCount) {
+            val layoutParams = layout.getChildAt(i).layoutParams as LinearLayout.LayoutParams
+            layoutParams.weight = 1f
+            layout.getChildAt(i).layoutParams = layoutParams
+        }
+        layout.weightSum = content!!.content.size.toFloat()
     }
 
     private fun addTextLayout(value: String) {
